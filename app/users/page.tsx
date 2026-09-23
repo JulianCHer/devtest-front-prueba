@@ -1,0 +1,44 @@
+
+interface User {
+    id: string;
+    name: string;
+    email: string;
+}
+
+async function getUsers(): Promise<User[]> {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+        cache: "no-store",
+    });
+
+    if (!res.ok) {
+        throw new Error("Error al obtener los usuarios");
+    }
+
+    return res.json();
+}
+
+export default async function Users() {
+    const users = await getUsers();
+
+    return (
+        <div>
+            <h1 className="text-center font-[240px] m-[5%] text-5xl">Usuarios</h1>
+            <table className="w-full">
+                <thead>
+                    <tr className="w-[20%] text-center">N°</tr>
+                    <tr className="w-[40%] text-center">Nombre</tr>
+                    <tr className="w-[40%] text-center">Email</tr>
+                </thead>
+                <tbody>
+                    {users.map((user) => (
+                        <tr key={user.id}>
+                            <td className="w-[20%] text-center">{user.id}</td>
+                            <td className="w-[40%] text-center">{user.name}</td>
+                            <td className="w-[40%] text-center">{user.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
