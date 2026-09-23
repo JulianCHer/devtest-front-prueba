@@ -1,7 +1,13 @@
+import UserNavigation from "../components/UserNavigation";
+
 interface User {
     id: string;
     name: string;
     email: string;
+}
+
+interface Props {
+    params: { users: string[] };
 }
 
 async function getUsers(): Promise<User[]> {
@@ -16,7 +22,31 @@ async function getUsers(): Promise<User[]> {
     return res.json();
 }
 
-export default async function UsersPage() {
+async function getUserById(id: string): Promise<User> {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+        cache: "no-store",
+    });
+
+    if (!res.ok) {
+        throw new Error(`Error al obtener el usuario ${id}`);
+    }
+
+    return res.json();
+}
+
+export default async function Users({ params }: Props) {
+    const id = params?.users?.[0];
+
+    if (id) {
+        const user = await getUserById(id);
+        return (
+            <div>
+                <h1 className="text-center m-[5%] text-5xl">El ID del usuario es: #{user.id}</h1>
+                <UserNavigation currentId={Number(user.id)} />
+            </div>
+        );
+    }
+
     const users = await getUsers();
 
     return (
