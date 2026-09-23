@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prueba Técnica: Frontend (Next.js)
 
-## Getting Started
+**Tiempo sugerido:** 1 hora
 
-First, run the development server:
+Bienvenido a la prueba técnica de Frontend. Este proyecto ya cuenta con Next.js (App Router) y Tailwind CSS preconfigurados. A continuación encontrarás 3 problemas diseñados para evaluar tu dominio del framework y buenas prácticas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ⚠️ Instrucciones de Control de Versiones (Git)
+Es obligatorio que manejes tu progreso usando buenas prácticas de Git. **Cada problema se considera un fix o feature independiente**. Por lo tanto, para CADA problema debes:
+1. Crear una rama nueva desde la rama principal (ej: `feature/problema-1`).
+2. Resolver el problema y hacer tus commits correspondientes.
+3. Hacer push de tu rama y crear un **Pull Request (PR)** hacia la rama principal.
+4. Volver a la rama principal para iniciar el siguiente problema.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Problema 1: Data Fetching y Server Components (15 min - Básico)
+**Objetivo:** Evaluar el uso del App Router y componentes de servidor.
+- Crea una ruta nueva en `/users`.
+- Dentro del `page.tsx` de esta ruta (como Server Component), haz un fetch a una API pública (puedes usar `https://jsonplaceholder.typicode.com/users`).
+- Renderiza una lista simple con los nombres y correos de los usuarios.
+- Implementa un archivo `loading.tsx` para mostrar un estado de carga mientras se obtienen los datos.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Problema 2: Routing Dinámico y Estado Local (15 min - Intermedio)
+**Objetivo:** Evaluar Client Components y rutas dinámicas.
+- Crea una ruta dinámica en `/users/[id]`.
+- Al entrar a un usuario específico, muestra el ID en pantalla.
+- Implementa un pequeño contador interactivo (Botones de `+` y `-`) en esta misma página.
+- **Importante:** Justifica correctamente la adición de `"use client"` en el lugar adecuado sin romper las reglas de composición (manteniendo el layout/page lo más "Server" posible si es viable).
 
-## Learn More
+## Problema 3: Server Actions y Optimistic Updates (30 min - Avanzado)
+**Objetivo:** Evaluar las características más recientes de Next.js.
+- Crea un formulario sencillo para agregar un "Nuevo Usuario" a una lista local (puedes hacer la lista mockeada).
+- Utiliza **Server Actions** (`"use server"`) para manejar el `submit` del formulario (simulando un delay de 2 segundos en el servidor).
+- Implementa **Optimistic Updates** (usando `useOptimistic` de React). Al enviar el formulario, el nuevo usuario debe aparecer en la lista instantáneamente en la interfaz de usuario, y si la Server Action falla, debe revertirse el estado.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+¡Mucho éxito! No te preocupes si no logras completar todos los puntos, enfócate en demostrar tus buenas prácticas y tu proceso de razonamiento.
